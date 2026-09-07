@@ -14,16 +14,7 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
 
   return (
     <div className="space-y-5">
-      <section className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <p className="mb-1 text-xs font-semibold text-primary">نظرة عامة</p>
-          <h1 id="dashboard-title" className="text-2xl font-bold tracking-tight text-foreground sm:text-[28px]">
-            لوحة التحكم
-          </h1>
-          <p className="mt-1.5 text-sm leading-6 text-muted-foreground">
-            تابع أداء العمليات والرحلات لحظة بلحظة
-          </p>
-        </div>
+      <section aria-label="فلاتر لوحة التحكم" className="flex justify-end">
         <DashboardToolbar selectedRange={overview.range} />
       </section>
       <StatsGrid metrics={overview.metrics} />

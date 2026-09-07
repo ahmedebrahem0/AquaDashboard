@@ -35,7 +35,7 @@ export default async function SectionPage({ params }: SectionPageProps) {
   if (!item) notFound();
 
   return (
-    <section aria-labelledby="section-title" className="grid min-h-[calc(100svh-10rem)] place-items-center py-4 sm:py-8">
+    <section aria-labelledby="section-card-title" className="grid min-h-[calc(100svh-10rem)] place-items-center py-4 sm:py-8">
       <div className="w-full max-w-xl overflow-hidden rounded-xl border border-border bg-card shadow-[0_18px_50px_rgba(31,15,140,0.08)]">
         <div className="h-1.5 bg-accent" aria-hidden="true" />
         <div className="flex flex-col items-center px-6 py-10 text-center sm:px-12 sm:py-14">
@@ -43,7 +43,7 @@ export default async function SectionPage({ params }: SectionPageProps) {
             <Image src={item.iconSrc} alt="" width={26} height={26} sizes="26px" className="max-h-[26px] w-auto object-contain" />
           </div>
           <p className="mb-2 text-xs font-bold text-primary">قيد التجهيز</p>
-          <h1 id="section-title" className="text-2xl font-bold tracking-tight text-foreground sm:text-[28px]">{item.label}</h1>
+          <h2 id="section-card-title" className="text-2xl font-bold tracking-tight text-foreground sm:text-[28px]">{item.label}</h2>
           <p className="mt-4 max-w-md text-sm leading-7 text-muted-foreground">
             {item.description} نعمل حاليًا على تجهيز هذا القسم ليكون متوفرًا قريبًا.
           </p>

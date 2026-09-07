@@ -17,8 +17,8 @@ export function Sidebar({ className, onNavigate }: SidebarProps) {
       )}
       aria-label="القائمة الجانبية"
     >
-      <div className="flex h-[116px] shrink-0 flex-col items-center justify-center border-b border-white/10 px-5 py-3 text-center">
-        <Image src="/images/brand/Logo.png" alt="" width={48} height={38} sizes="48px" priority />
+      <div className="flex h-[146px] shrink-0 flex-col items-center justify-center gap-3 border-b border-white/10 px-5 py-4 text-center">
+        <Image src="/images/brand/Logo.png" alt="" width={48} height={38} sizes="48px" priority className="h-[38px] w-12 object-contain" />
         <Image
           src="/images/brand/KOWA كوا.png"
           alt="كوا"
@@ -26,7 +26,7 @@ export function Sidebar({ className, onNavigate }: SidebarProps) {
           height={86}
           sizes="116px"
           priority
-          className="-mt-3 h-[72px] w-auto object-contain"
+          className="h-[72px] w-auto object-contain"
         />
       </div>
 
