@@ -1,4 +1,5 @@
 import { DashboardToolbar } from "@/features/dashboard/components/dashboard-toolbar";
+import { DashboardSections } from "@/features/analytics/components/dashboard-sections-layout";
 import { StatsGrid } from "@/features/dashboard/components/stats-grid";
 import { parseDashboardRange, selectDashboardOverview } from "@/features/dashboard/lib/dashboard-selectors";
 
@@ -26,6 +27,7 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
         <DashboardToolbar selectedRange={overview.range} />
       </section>
       <StatsGrid metrics={overview.metrics} />
+      <DashboardSections range={range} />
     </div>
   );
 }

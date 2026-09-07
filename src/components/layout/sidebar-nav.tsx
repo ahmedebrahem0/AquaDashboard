@@ -11,10 +11,10 @@ export function SidebarNav({ onNavigate }: { onNavigate?: () => void }) {
   const pathname = usePathname();
 
   return (
-    <nav aria-label="التنقل الرئيسي" className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-3 py-3 [scrollbar-width:thin]">
+    <nav aria-label="التنقل الرئيسي" className="sidebar-scroll min-h-0 flex-1 overflow-y-auto overscroll-contain px-3 py-2">
       {navigationGroups.map((group, groupIndex) => (
-        <div key={group.label ?? "primary"} className={cn(groupIndex > 0 && "mt-3 border-t border-white/10 pt-3")}>
-          {group.label ? <p className="mb-1.5 px-3 text-[10px] font-semibold tracking-wide text-indigo-100/60">{group.label}</p> : null}
+        <div key={group.label ?? "primary"} className={cn(groupIndex > 0 && "mt-1.5 border-t border-white/10 pt-1.5")}>
+          {group.label ? <p className="mb-0.5 px-3 text-[10px] font-semibold tracking-wide text-indigo-100/60">{group.label}</p> : null}
           <ul className="space-y-0.5">
             {group.items.map((item) => {
               const active = isNavigationItemActive(pathname, item.href);
@@ -27,7 +27,7 @@ export function SidebarNav({ onNavigate }: { onNavigate?: () => void }) {
                     aria-current={active ? "page" : undefined}
                     onClick={onNavigate}
                     className={cn(
-                      "group flex min-h-11 items-center gap-3 rounded-lg px-3 text-[13px] transition-colors focus-visible:outline-white",
+                      "group flex min-h-10 items-center gap-3 rounded-lg px-3 text-[13px] transition-colors focus-visible:outline-white",
                       active
                         ? "bg-[#D3D93C] font-bold text-[#1F0F8C] shadow-[0_8px_22px_rgba(0,0,0,0.17)]"
                         : "font-medium text-white hover:bg-white/10",

@@ -9,7 +9,9 @@ Arabic-first logistics dashboard built as a front-end implementation of a Figma 
 - Eleven working navigation routes with clear active states.
 - Honest coming-soon pages for sections that are not implemented yet.
 - URL-backed dashboard date filters for shareable and persistent state.
-- Typed, deterministic mock KPI data with pure selectors.
+- Typed, deterministic dashboard data with pure selectors.
+- Live delivery map, current trips, trend analysis, status distribution, city ranking, demand sources, and peak-hours heatmap.
+- Compact scrollbar-free desktop sidebar with accessible scrolling retained for short viewports.
 - Lightweight SVG sparklines instead of loading a chart library for small trends.
 - Semantic design tokens based on the Figma palette.
 - Keyboard navigation, visible focus states, reduced-motion support, and accessible status text.
@@ -21,7 +23,7 @@ Arabic-first logistics dashboard built as a front-end implementation of a Figma 
 - React 19
 - TypeScript in strict mode
 - Tailwind CSS 4
-- Recharts for the upcoming analytics charts
+- Recharts for responsive analytics charts
 - Lucide React for interface icons
 - shadcn configuration with Base UI primitives
 
@@ -35,7 +37,10 @@ src/
 │   └── layout/               # App shell, header, sidebar and mobile navigation
 ├── config/                   # Site and navigation configuration
 ├── features/
-│   └── dashboard/            # KPI components, mock data, selectors and types
+│   ├── dashboard/            # KPI components, mock data, selectors and types
+│   ├── analytics/            # Typed insights and isolated chart clients
+│   ├── delivery-map/         # Static optimized live-map card
+│   └── orders/               # Current-trip data, types and presentation
 └── lib/                      # Shared utilities
 
 public/
