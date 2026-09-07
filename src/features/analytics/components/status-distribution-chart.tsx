@@ -5,17 +5,17 @@ import { Cell, Pie, PieChart, ResponsiveContainer } from "recharts";
 import type { DistributionPoint } from "@/features/analytics/types/analytics";
 import { numberFormatter, percentFormatter } from "@/lib/formatters";
 
-export function StatusDistributionChart({ data }: { data: DistributionPoint[] }) {
+export function StatusDistributionChart({ data, title = "توزيع حالات الرحلة", subtitle = "آخر 30 يوم" }: { data: DistributionPoint[]; title?: string; subtitle?: string }) {
   const total = data.reduce((sum, item) => sum + item.value, 0);
 
   return (
     <section aria-labelledby="distribution-title" className="dashboard-card min-h-[240px] overflow-hidden p-4 sm:p-5 xl:h-full">
       <header className="text-right">
-        <h2 id="distribution-title" className="text-[13px] font-bold text-foreground">توزيع حالات الرحلة</h2>
-        <p className="mt-0.5 text-[10px] text-muted-foreground">آخر 30 يوم</p>
+        <h2 id="distribution-title" className="text-[13px] font-bold text-foreground">{title}</h2>
+        <p className="mt-0.5 text-[10px] text-muted-foreground">{subtitle}</p>
       </header>
 
-      <p className="sr-only">توزيع {numberFormatter.format(total)} رحلة خلال آخر 30 يوم حسب حالة الرحلة.</p>
+      <p className="sr-only">{title} لعدد {numberFormatter.format(total)} رحلة، {subtitle}.</p>
 
       <div className="ml-auto mt-2 grid w-full max-w-[290px] grid-cols-[minmax(100px,120px)_minmax(140px,150px)] items-center justify-end gap-2" dir="ltr">
         <ul className="space-y-3" dir="rtl" aria-label="تفاصيل توزيع حالات الرحلة">

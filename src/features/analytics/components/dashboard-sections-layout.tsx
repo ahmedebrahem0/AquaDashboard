@@ -13,7 +13,7 @@ export function DashboardSections({ range }: { range: DashboardRange }) {
   const analytics = getAnalyticsData(range);
   return <div className="space-y-4">
     <div className="grid items-stretch gap-4 xl:grid-cols-[minmax(0,1.7fr)_minmax(280px,.8fr)] xl:[direction:ltr]"><DeliveryMapCard /><CurrentTripsCard trips={currentTrips} /></div>
-    <div className="grid gap-4 xl:grid-cols-[minmax(0,2fr)_minmax(260px,.72fr)] xl:items-stretch"><TripsTrendChart data={analytics.trend} periodLabel={analytics.periodLabel} total={analytics.total} /><StatusDistributionChart data={analytics.distribution} /></div>
-    <div className="grid gap-4 lg:grid-cols-3"><OrderSourcesChart data={analytics.sources} /><CityPerformanceCard cities={analytics.cities} /><PeakHoursCard /></div>
+    <div className="grid gap-4 xl:grid-cols-[minmax(0,2fr)_minmax(260px,.72fr)] xl:items-stretch"><TripsTrendChart data={analytics.trend} periodLabel={analytics.periodLabel} total={analytics.total} primarySeriesLabel={analytics.primarySeriesLabel} secondarySeriesLabel={analytics.secondarySeriesLabel} /><StatusDistributionChart data={analytics.distribution} title={analytics.distributionTitle} subtitle={analytics.distributionSubtitle} /></div>
+    <div className="grid gap-4 lg:grid-cols-3"><OrderSourcesChart data={analytics.sources} title={analytics.sourcesTitle} subtitle={analytics.sourcesSubtitle} /><CityPerformanceCard cities={analytics.cities} title={analytics.citiesTitle} subtitle={analytics.citiesSubtitle} /><PeakHoursCard title={analytics.peakTitle} subtitle={analytics.peakSubtitle} /></div>
   </div>;
 }

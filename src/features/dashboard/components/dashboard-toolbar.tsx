@@ -43,7 +43,7 @@ export function DashboardToolbar({ selectedRange }: { selectedRange: DashboardRa
               aria-pressed={selected}
               onClick={() => selectRange(option.value)}
               disabled={isPending}
-              className={`h-11 min-w-0 rounded-lg border px-4 text-sm font-semibold shadow-[0_1px_4px_rgba(18,18,35,0.08)] transition-[color,background-color,border-color,box-shadow] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-wait disabled:opacity-70 sm:w-28 ${selected ? "border-border bg-white text-foreground shadow-[0_1px_5px_rgba(18,18,35,0.12)]" : "border-[#edf0f4] bg-[#f8f9fb] text-[#526078] hover:border-border hover:bg-white hover:text-foreground"}`}
+              className={`h-11 min-w-0 rounded-lg border px-4 text-sm font-semibold shadow-[0_1px_4px_rgba(18,18,35,0.08)] transition-[color,background-color,border-color,box-shadow] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-wait disabled:opacity-70 sm:w-28 ${selected ? "border-primary bg-white text-primary shadow-[inset_0_-2px_0_#1f0f8c,0_1px_5px_rgba(18,18,35,0.12)]" : "border-[#edf0f4] bg-[#f8f9fb] text-[#526078] hover:border-border hover:bg-white hover:text-foreground"}`}
             >
               {option.label}
             </button>

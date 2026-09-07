@@ -5,13 +5,13 @@ const hours = ["6ص", "8ص", "10ص", "12م", "2م", "4م", "6م", "8م", "10م",
 const values = [[1,2,2,3,4,4,3,2,1,2],[1,2,3,4,4,3,3,2,1,2],[2,3,4,4,3,4,3,2,1,2],[1,2,3,4,4,4,3,2,1,2],[1,3,4,4,3,3,2,2,1,2],[1,2,3,3,4,3,2,1,1,2],[1,1,2,2,3,2,2,1,1,2]];
 const colors = ["#eeedf8", "#c7c1e8", "#9287d1", "#5948b4", "#1f0f8c"];
 
-export function PeakHoursCard() {
+export function PeakHoursCard({ title = "ساعات الذروة", subtitle = "7 أيام × 10 فترات" }: { title?: string; subtitle?: string }) {
   return (
     <section aria-labelledby="heat-title" className="dashboard-card overflow-hidden">
-      <CardTitle id="heat-title" title="ساعات الذروة" subtitle="7 أيام × 10 فترات" />
+      <CardTitle id="heat-title" title={title} subtitle={subtitle} />
       <p className="sr-only">أعلى نشاط عادة بين الثانية عشرة ظهرًا والرابعة عصرًا.</p>
-      <div className="overflow-x-auto p-4">
-        <div className="min-w-[400px] space-y-1.5">
+      <div className="p-4">
+        <div className="space-y-1.5">
           <div className="grid grid-cols-[50px_repeat(10,1fr)] gap-1 text-center text-[8px] text-muted-foreground">
             <span />
             {hours.map((hour) => (
@@ -37,7 +37,7 @@ export function PeakHoursCard() {
           {colors.slice(1).map((color) => (
             <i key={color} className="size-2.5 rounded-[2px]" style={{ background: color }} />
           ))}
-          <span>أعلى</span>
+          <span>أكثر</span>
         </div>
       </div>
     </section>
