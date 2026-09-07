@@ -18,7 +18,7 @@ function formatMetricValue(metric: DashboardMetric) {
   if (metric.kind === "distance") {
     return (
       <span className="inline-flex items-baseline gap-[0.2em]" dir="ltr">
-        <span className="text-[0.52em] font-bold text-muted-foreground" dir="rtl">ر.س</span>
+        <span className="text-[0.62em] font-bold" dir="rtl">ر.س</span>
         <bdi dir="ltr">{value}</bdi>
       </span>
     );
