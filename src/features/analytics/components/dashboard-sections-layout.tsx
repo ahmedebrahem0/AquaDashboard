@@ -13,7 +13,7 @@ export function DashboardSections({ range }: { range: DashboardRange }) {
   const analytics = getAnalyticsData(range);
   return <div className="space-y-4">
     <div className="grid items-stretch gap-4 xl:grid-cols-[minmax(0,1.7fr)_minmax(280px,.8fr)] xl:[direction:ltr]"><DeliveryMapCard /><CurrentTripsCard trips={currentTrips} /></div>
-    <div className="grid gap-4 xl:grid-cols-[minmax(0,2fr)_minmax(260px,.72fr)]"><TripsTrendChart data={analytics.trend} periodLabel={analytics.periodLabel} total={analytics.total} /><StatusDistributionChart data={analytics.distribution} total={analytics.total} /></div>
+    <div className="grid items-start gap-4 xl:grid-cols-[minmax(0,2fr)_minmax(260px,.72fr)]"><TripsTrendChart data={analytics.trend} periodLabel={analytics.periodLabel} total={analytics.total} /><StatusDistributionChart data={analytics.distribution} /></div>
     <div className="grid gap-4 lg:grid-cols-3"><OrderSourcesChart data={analytics.sources} /><CityPerformanceCard cities={analytics.cities} /><PeakHoursCard /></div>
   </div>;
 }

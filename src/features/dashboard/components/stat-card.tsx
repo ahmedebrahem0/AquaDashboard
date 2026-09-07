@@ -3,12 +3,26 @@ import { ArrowDownLeft, ArrowUpLeft } from "lucide-react";
 import { Sparkline } from "@/features/dashboard/components/sparkline";
 import type { DashboardMetric } from "@/features/dashboard/types/dashboard";
 
-const numberFormatter = new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 });
+import { numberFormatter } from "@/lib/formatters";
 
 function formatMetricValue(metric: DashboardMetric) {
   const value = numberFormatter.format(metric.value);
-  if (metric.kind === "currency") return <><bdi>{value}</bdi> <span className="text-[0.62em] font-bold">ر.س</span></>;
-  if (metric.kind === "distance") return <><bdi>{value}</bdi> <span className="text-[0.52em] font-bold text-muted-foreground">كم</span></>;
+  if (metric.kind === "currency") {
+    return (
+      <span className="inline-flex items-baseline gap-[0.2em]" dir="ltr">
+        <span className="text-[0.62em] font-bold" dir="rtl">ر.س</span>
+        <bdi dir="ltr">{value}</bdi>
+      </span>
+    );
+  }
+  if (metric.kind === "distance") {
+    return (
+      <span className="inline-flex items-baseline gap-[0.2em]" dir="ltr">
+        <span className="text-[0.52em] font-bold text-muted-foreground" dir="rtl">كم</span>
+        <bdi dir="ltr">{value}</bdi>
+      </span>
+    );
+  }
   return <bdi>{value}</bdi>;
 }
 

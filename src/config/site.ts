@@ -3,7 +3,7 @@ export const siteConfig = {
   nameLatin: "KOWA",
   description: "منصة متكاملة لإدارة العمليات اللوجستية",
   user: {
-    name: "عبدالله محمد",
-    role: "مدير النظام",
+    name: "عبدالله . مدير",
+    role: "الادمن",
   },
 } as const;
