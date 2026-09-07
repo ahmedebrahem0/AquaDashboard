@@ -9,7 +9,7 @@ export function StatusDistributionChart({ data, title = "توزيع حالات �
   const total = data.reduce((sum, item) => sum + item.value, 0);
 
   return (
-    <section aria-labelledby="distribution-title" className="dashboard-card min-h-[240px] overflow-hidden p-4 sm:p-5 xl:h-full">
+    <section aria-labelledby="distribution-title" className="dashboard-card overflow-hidden p-4 sm:p-5 xl:h-full">
       <header className="text-right">
         <h2 id="distribution-title" className="text-[13px] font-bold text-foreground">{title}</h2>
         <p className="mt-0.5 text-[10px] text-muted-foreground">{subtitle}</p>
@@ -17,7 +17,7 @@ export function StatusDistributionChart({ data, title = "توزيع حالات �
 
       <p className="sr-only">{title} لعدد {numberFormatter.format(total)} رحلة، {subtitle}.</p>
 
-      <div className="ml-auto mt-2 grid w-full max-w-[290px] grid-cols-[minmax(100px,120px)_minmax(140px,150px)] items-center justify-end gap-2" dir="ltr">
+      <div className="mt-3 ml-auto grid w-full max-w-[290px] grid-cols-[minmax(100px,120px)_minmax(140px,150px)] items-center justify-end gap-2" dir="ltr">
         <ul className="space-y-3" dir="rtl" aria-label="تفاصيل توزيع حالات الرحلة">
           {data.map((item) => (
             <li key={item.name} className="grid grid-cols-[1fr_auto] items-center gap-2 text-[10px]">

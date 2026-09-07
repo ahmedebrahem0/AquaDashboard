@@ -47,7 +47,7 @@ export function getAnalyticsData(range: DashboardRange): AnalyticsData {
       callsColor: "#2563EB"
     },
     citiesTitle: isCancelled ? "الإلغاءات حسب المدينة" : "أعلى المدن أداءً",
-    citiesSubtitle: isCancelled ? "خلال آخر 7 أيام" : "عدد الرحلات المنفذة",
+    citiesSubtitle: isCancelled ? "خلال آخر 7 أيام" : "أفقي بـ track",
     peakTitle: isCancelled ? "ساعات ذروة الإلغاء" : "ساعات الذروة",
     peakSubtitle: isCancelled ? "آخر 7 أيام حسب الساعة" : "7 أيام × 10 فترات",
     trend: labels[range].map((label, index) => ({ label, trips: values[index], completed: completed[index] })),

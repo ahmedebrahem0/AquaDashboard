@@ -2,7 +2,42 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { CardTitle } from "@/features/analytics/components/card-title";
 import type { CurrentTrip, TripStatus } from "@/features/orders/types/order";
-const statuses: Record<TripStatus, { label: string; color: string }> = { active: { label: "قيد التنفيذ", color: "bg-primary/10 text-primary" }, completed: { label: "مكتملة", color: "bg-success-subtle text-success" }, delayed: { label: "متأخرة", color: "bg-warning-subtle text-[#915600]" } };
+
+const statuses: Record<TripStatus, { label: string; color: string; dotColor: string }> = {
+  active: { label: "في الطريق", color: "bg-blue-100 text-blue-700", dotColor: "bg-blue-500" },
+  completed: { label: "بدأت الرحلة", color: "bg-green-100 text-green-700", dotColor: "bg-green-500" },
+  delayed: { label: "متجه للعميل", color: "bg-orange-100 text-orange-500", dotColor: "bg-orange-500" }
+};
+
 export function CurrentTripsCard({ trips }: { trips: readonly CurrentTrip[] }) {
-  return <section dir="rtl" aria-labelledby="trips-title" className="dashboard-card flex flex-col"><CardTitle id="trips-title" title="الرحلات الحالية الآن" subtitle="أحدث الرحلات الجارية" extra={<span className="text-[10px] text-muted-foreground">{trips.length} رحلات</span>} /><ul className="divide-y divide-border">{trips.map((trip) => { const status = statuses[trip.status]; return <li key={trip.id} className="flex items-center justify-between gap-3 px-4 py-3"><div className="min-w-0"><p className="truncate text-xs font-bold">{trip.name}</p><p className="mt-1 truncate text-[10px] text-muted-foreground">{trip.route} · <bdi dir="ltr">{trip.plate}</bdi></p></div><div className="shrink-0 text-left"><span className={`rounded-md px-2 py-1 text-[9px] font-bold ${status.color}`}>{status.label}</span><p className="mt-1 text-[9px] text-muted-foreground"><bdi dir="ltr">{trip.id}</bdi></p></div></li>; })}</ul><Link href="/trips" className="mx-4 mb-4 mt-auto flex items-center justify-center gap-2 rounded-lg bg-primary px-3 py-2.5 text-xs font-bold text-white">عرض كل الرحلات الحالية <ArrowLeft className="size-4" /></Link></section>;
+  return (
+    <section dir="rtl" aria-labelledby="trips-title" className="dashboard-card flex flex-col">
+      <CardTitle
+        id="trips-title"
+        title="الرحلات الجارية الآن"
+        extra={<span className="text-xs text-muted-foreground">تحديث كل 10 ثواني</span>}
+      />
+      <ul className="space-y-2 px-4 py-3">
+        {trips.map((trip) => {
+          const status = statuses[trip.status];
+          return (
+            <li key={trip.id} className="flex items-center justify-between rounded-lg bg-gray-50 p-3 gap-2">
+              <div className="flex flex-col gap-1 flex-1">
+                <p className="text-xs font-bold text-gray-900">{trip.name}</p>
+                <p className="text-[10px] text-gray-500"><bdi dir="ltr">{trip.id}</bdi></p>
+              </div>
+              <span className={`flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-semibold ${status.color} shrink-0`}>
+                <span className={`w-1.5 h-1.5 rounded-full ${status.dotColor}`} />
+                {status.label}
+              </span>
+            </li>
+          );
+        })}
+      </ul>
+      <Link href="/trips" className="mx-4 mb-4 mt-auto flex items-center justify-center gap-2 rounded-lg bg-primary px-3 py-2.5 text-xs font-bold text-white">
+        عرض كل الرحلات الجارية ({trips.length})
+        <ArrowLeft className="size-4" />
+      </Link>
+    </section>
+  );
 }
