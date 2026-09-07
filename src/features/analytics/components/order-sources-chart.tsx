@@ -38,9 +38,9 @@ export function OrderSourcesChart({ data, title = "مصادر الطلبات", s
             <XAxis dataKey="label" tick={{ fontSize: 8 }} axisLine={false} tickLine={false} />
             <YAxis tick={{ fontSize: 8 }} axisLine={false} tickLine={false} />
             <Tooltip formatter={(value) => nf.format(Number(value))} />
-            <Bar dataKey="app" name={series.app} stackId="a" fill={series.appColor} isAnimationActive={false} />
+            <Bar dataKey="calls" name={series.calls} stackId="a" fill={series.callsColor} isAnimationActive={false} />
             <Bar dataKey="web" name={series.web} stackId="a" fill={series.webColor} isAnimationActive={false} />
-            <Bar dataKey="calls" name={series.calls} stackId="a" fill={series.callsColor} radius={[3, 3, 0, 0]} isAnimationActive={false} />
+            <Bar dataKey="app" name={series.app} stackId="a" fill={series.appColor} radius={[3, 3, 0, 0]} isAnimationActive={false} />
           </BarChart>
         </ResponsiveContainer>
       </div>
