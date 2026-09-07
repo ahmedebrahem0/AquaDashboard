@@ -9,7 +9,7 @@ export function StatusDistributionChart({ data }: { data: DistributionPoint[] })
   const total = data.reduce((sum, item) => sum + item.value, 0);
 
   return (
-    <section aria-labelledby="distribution-title" className="dashboard-card min-h-[240px] self-start overflow-hidden p-4 sm:p-5">
+    <section aria-labelledby="distribution-title" className="dashboard-card min-h-[240px] overflow-hidden p-4 sm:p-5 xl:h-full">
       <header className="text-right">
         <h2 id="distribution-title" className="text-[13px] font-bold text-foreground">توزيع حالات الرحلة</h2>
         <p className="mt-0.5 text-[10px] text-muted-foreground">آخر 30 يوم</p>
