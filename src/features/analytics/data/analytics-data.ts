@@ -1,16 +1,18 @@
 import type { AnalyticsData } from "@/features/analytics/types/analytics";
 import type { DashboardRange } from "@/features/dashboard/types/dashboard";
 
-const totals: Record<DashboardRange, number> = { today: 8420, week: 56190, month: 238640 };
+const totals: Record<DashboardRange, number> = { today: 8420, week: 56190, month: 238640, cancelled: 1179 };
 const labels: Record<DashboardRange, string[]> = {
   today: ["6 ص", "8 ص", "10 ص", "12 م", "2 م", "4 م", "6 م", "8 م"],
   week: ["السبت", "الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة"],
   month: ["أسبوع 1", "أسبوع 2", "أسبوع 3", "أسبوع 4"],
+  cancelled: ["6 ص", "8 ص", "10 ص", "12 م", "2 م", "4 م", "6 م", "8 م"],
 };
 const weights: Record<DashboardRange, number[]> = {
   today: [0.08, 0.1, 0.09, 0.12, 0.11, 0.15, 0.14, 0.21],
   week: [0.12, 0.14, 0.13, 0.16, 0.15, 0.14, 0.16],
   month: [0.21, 0.23, 0.25, 0.31],
+  cancelled: [0.07, 0.09, 0.1, 0.13, 0.16, 0.18, 0.15, 0.12],
 };
 function allocate(total: number, shares: number[]) {
   const values = shares.map((share) => Math.round(total * share));
@@ -22,12 +24,12 @@ export function getAnalyticsData(range: DashboardRange): AnalyticsData {
   const values = allocate(total, weights[range]);
   const completedTotal = Math.round(total * 0.78);
   const completed = allocate(completedTotal, weights[range]);
-  const distributionValues = allocate(8420, [0.78, 0.14, 0.05, 0.03]);
+  const distributionValues = allocate(range === "cancelled" ? total : 8420, [0.78, 0.14, 0.05, 0.03]);
   const factor = total / 8420;
   const sourceTotals = allocate(total, [0.12, 0.14, 0.16, 0.17, 0.19, 0.22]);
   return {
     total,
-    periodLabel: range === "today" ? "أداء اليوم حسب الساعة" : range === "week" ? "أداء الأسبوع حسب اليوم" : "أداء الشهر حسب الأسبوع",
+    periodLabel: range === "today" ? "أداء اليوم حسب الساعة" : range === "week" ? "أداء الأسبوع حسب اليوم" : range === "month" ? "أداء الشهر حسب الأسبوع" : "الرحلات الملغية حسب الساعة",
     trend: labels[range].map((label, index) => ({ label, trips: values[index], completed: completed[index] })),
     distribution: [
       { name: "مكتملة", value: distributionValues[0], color: "#1F0F8C" },

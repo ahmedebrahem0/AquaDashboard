@@ -9,6 +9,7 @@ const rangeOptions: readonly { value: DashboardRange; label: string }[] = [
   { value: "today", label: "اليوم" },
   { value: "week", label: "أسبوع" },
   { value: "month", label: "شهر" },
+  { value: "cancelled", label: "ملغية" },
 ];
 
 export function DashboardToolbar({ selectedRange }: { selectedRange: DashboardRange }) {
@@ -31,7 +32,7 @@ export function DashboardToolbar({ selectedRange }: { selectedRange: DashboardRa
         role="group"
         aria-label="اختيار الفترة الزمنية"
         aria-busy={isPending}
-        className="grid w-full grid-cols-3 gap-2 sm:flex sm:w-auto"
+        className="grid w-full grid-cols-2 gap-2 sm:flex sm:w-auto"
       >
         {rangeOptions.map((option) => {
           const selected = selectedRange === option.value;

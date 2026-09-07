@@ -1,4 +1,4 @@
-export const dashboardRanges = ["today", "week", "month"] as const;
+export const dashboardRanges = ["today", "week", "month", "cancelled"] as const;
 
 export type DashboardRange = (typeof dashboardRanges)[number];
 

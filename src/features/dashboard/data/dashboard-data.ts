@@ -28,4 +28,13 @@ export const dashboardSnapshots = {
       { id: "completed", label: "الرحلات المكتملة", value: 14872, kind: "number", trend: "up", trendPercentage: 4.6, sparkline: [42, 40, 45, 48, 46, 51, 54, 52, 58, 61, 60, 65] },
     ],
   },
+  cancelled: {
+    range: "cancelled",
+    metrics: [
+      { id: "trips", label: "إجمالي الرحلات الملغية", value: 1179, kind: "number", trend: "down", trendPercentage: 3.6, sparkline: [61, 58, 60, 54, 56, 50, 48, 51, 46, 44, 42, 39] },
+      { id: "distance", label: "المسافة قبل الإلغاء", value: 28640, kind: "distance", trend: "down", trendPercentage: 5.2, sparkline: [57, 54, 56, 51, 49, 52, 46, 44, 47, 41, 39, 36] },
+      { id: "revenue", label: "قيمة الرحلات الملغية", value: 9268, kind: "currency", trend: "down", trendPercentage: 4.1, sparkline: [62, 59, 55, 57, 52, 50, 46, 48, 43, 41, 38, 35] },
+      { id: "completed", label: "أُعيد جدولتها", value: 214, kind: "number", trend: "up", trendPercentage: 8.3, sparkline: [31, 34, 33, 38, 40, 39, 44, 46, 45, 50, 53, 57] },
+    ],
+  },
 } as const satisfies Record<string, DashboardSnapshot>;
