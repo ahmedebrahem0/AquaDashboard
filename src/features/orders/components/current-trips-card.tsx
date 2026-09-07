@@ -1,12 +1,11 @@
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
 import { CardTitle } from "@/features/analytics/components/card-title";
 import type { CurrentTrip, TripStatus } from "@/features/orders/types/order";
 
-const statuses: Record<TripStatus, { label: string; color: string; dotColor: string }> = {
-  active: { label: "في الطريق", color: "bg-blue-100 text-blue-700", dotColor: "bg-blue-500" },
-  completed: { label: "بدأت الرحلة", color: "bg-green-100 text-green-700", dotColor: "bg-green-500" },
-  delayed: { label: "متجه للعميل", color: "bg-orange-100 text-orange-500", dotColor: "bg-orange-500" }
+const statuses: Record<TripStatus, { label: string; color: string }> = {
+  active: { label: "في الطريق", color: "bg-primary" },
+  completed: { label: "بدأت الرحلة", color: "bg-[#16a34a]" },
+  delayed: { label: "متجه للعميل", color: "bg-[#f59e0b]" },
 };
 
 export function CurrentTripsCard({ trips }: { trips: readonly CurrentTrip[] }) {
@@ -15,28 +14,30 @@ export function CurrentTripsCard({ trips }: { trips: readonly CurrentTrip[] }) {
       <CardTitle
         id="trips-title"
         title="الرحلات الجارية الآن"
-        extra={<span className="text-xs text-muted-foreground">تحديث كل 10 ثواني</span>}
+        subtitle="تتحدث كل 10 ثواني"
       />
-      <ul className="space-y-2 px-4 py-3">
+      <ul className="space-y-2.5 px-4 py-3">
         {trips.map((trip) => {
           const status = statuses[trip.status];
           return (
-            <li key={trip.id} className="flex items-center justify-between rounded-lg bg-gray-50 p-3 gap-2">
-              <div className="flex flex-col gap-1 flex-1">
-                <p className="text-xs font-bold text-gray-900">{trip.name}</p>
-                <p className="text-[10px] text-gray-500"><bdi dir="ltr">{trip.id}</bdi></p>
+            <li key={trip.id} className="flex min-h-17 items-center justify-between gap-3 rounded-xl bg-[#f5f6f8] px-4 py-3">
+              <div className="min-w-0">
+                <p className="truncate text-xs font-semibold text-foreground">{trip.name}</p>
+                <p className="mt-1 truncate text-[10px] text-muted-foreground">{trip.route}</p>
               </div>
-              <span className={`flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-semibold ${status.color} shrink-0`}>
-                <span className={`w-1.5 h-1.5 rounded-full ${status.dotColor}`} />
-                {status.label}
-              </span>
+              <div className="shrink-0 text-left">
+                <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-medium text-white ${status.color}`}>
+                  <span aria-hidden="true" className="size-1.5 rounded-full bg-white" />
+                  {status.label}
+                </span>
+                <p className="mt-1.5 text-[10px] text-muted-foreground"><bdi dir="ltr">#{trip.id}</bdi></p>
+              </div>
             </li>
           );
         })}
       </ul>
-      <Link href="/trips" className="mx-4 mb-4 mt-auto flex items-center justify-center gap-2 rounded-lg bg-primary px-3 py-2.5 text-xs font-bold text-white">
-        عرض كل الرحلات الجارية ({trips.length})
-        <ArrowLeft className="size-4" />
+      <Link href="/trips" className="mx-4 mb-4 mt-auto flex min-h-12 items-center justify-center rounded-xl bg-primary px-3 py-2.5 text-sm font-medium text-white transition-colors hover:bg-primary/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+        عرض كل الرحلات الجارية (38)
       </Link>
     </section>
   );
