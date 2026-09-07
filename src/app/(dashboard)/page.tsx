@@ -14,7 +14,7 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
 
   return (
     <div className="space-y-5">
-      <section aria-label="فلاتر لوحة التحكم" className="flex justify-end">
+      <section aria-label="فلاتر لوحة التحكم" className="w-full">
         <DashboardToolbar selectedRange={overview.range} />
       </section>
       <StatsGrid metrics={overview.metrics} />

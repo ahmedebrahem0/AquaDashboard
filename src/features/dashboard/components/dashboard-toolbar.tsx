@@ -1,6 +1,5 @@
 "use client";
 
-import { Printer } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTransition } from "react";
 
@@ -27,12 +26,12 @@ export function DashboardToolbar({ selectedRange }: { selectedRange: DashboardRa
   }
 
   return (
-    <div className="flex w-full flex-wrap items-center justify-between gap-3 sm:w-auto sm:justify-start print:hidden">
+    <div className="flex w-full flex-wrap items-center justify-between gap-3 print:hidden">
       <div
         role="group"
         aria-label="اختيار الفترة الزمنية"
         aria-busy={isPending}
-        className="grid min-h-11 flex-1 grid-cols-3 overflow-hidden rounded-lg border border-border bg-card shadow-[0_1px_2px_rgba(18,18,35,0.04)] sm:flex sm:flex-none"
+        className="grid w-full grid-cols-3 gap-2 sm:flex sm:w-auto"
       >
         {rangeOptions.map((option) => {
           const selected = selectedRange === option.value;
@@ -42,7 +41,8 @@ export function DashboardToolbar({ selectedRange }: { selectedRange: DashboardRa
               type="button"
               aria-pressed={selected}
               onClick={() => selectRange(option.value)}
-              className={`min-h-11 min-w-18 border-e border-border px-4 text-xs font-semibold transition-colors last:border-e-0 focus-visible:z-10 ${selected ? "bg-primary text-primary-foreground" : "bg-card text-muted-foreground hover:bg-muted hover:text-foreground"}`}
+              disabled={isPending}
+              className={`h-11 min-w-0 rounded-lg border px-4 text-sm font-semibold shadow-[0_1px_4px_rgba(18,18,35,0.08)] transition-[color,background-color,border-color,box-shadow] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-wait disabled:opacity-70 sm:w-28 ${selected ? "border-border bg-white text-foreground shadow-[0_1px_5px_rgba(18,18,35,0.12)]" : "border-[#edf0f4] bg-[#f8f9fb] text-[#526078] hover:border-border hover:bg-white hover:text-foreground"}`}
             >
               {option.label}
             </button>
@@ -53,10 +53,9 @@ export function DashboardToolbar({ selectedRange }: { selectedRange: DashboardRa
       <button
         type="button"
         onClick={() => window.print()}
-        className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-primary px-4 text-xs font-bold text-primary-foreground shadow-sm transition-colors hover:bg-[#211080]"
+        className="inline-flex h-11 w-full items-center justify-center rounded-lg bg-primary px-5 text-sm font-bold text-primary-foreground shadow-sm transition-colors hover:bg-[#211080] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:w-36"
         aria-label="طباعة تقرير لوحة التحكم"
       >
-        <Printer aria-hidden="true" className="size-4" />
         <span>تصدير التقرير</span>
       </button>
     </div>
