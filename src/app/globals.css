@@ -1,26 +1,174 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+
+  --background: #f6f7f9;
+  --foreground: #171724;
+
+  --card: #ffffff;
+  --card-foreground: #151526;
+  --popover: #ffffff;
+  --popover-foreground: #151526;
+
+  --primary: #1f0f8c;
+  --primary-foreground: #ffffff;
+  --secondary: #eeeff3;
+  --secondary-foreground: #29283a;
+  --muted: #eef0f4;
+  --muted-foreground: #666979;
+  --accent: #d3d93c;
+  --accent-foreground: #1f0f8c;
+
+  --border: #e0e3e9;
+  --input: #d8dce4;
+  --ring: #1f0f8c;
+  --sidebar: #1f0f8c;
+
+  --success: #16a34a;
+  --success-foreground: #ffffff;
+  --success-subtle: #e9f8ef;
+  --warning: #f59e0b;
+  --warning-foreground: #ffffff;
+  --warning-subtle: #fff4df;
+  --danger: #dc3545;
+  --danger-foreground: #ffffff;
+  --danger-subtle: #fff0f1;
+  --info: #2563eb;
+  --info-foreground: #ffffff;
+  --info-subtle: #eef4ff;
+
+  --chart-1: #1f0f8c;
+  --chart-2: #376ff1;
+  --chart-3: #16a34a;
+  --chart-4: #f59e0b;
+  --chart-5: #e53e4d;
+
+  --radius: 0.625rem;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-success-subtle: var(--success-subtle);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-warning-subtle: var(--warning-subtle);
+  --color-danger: var(--danger);
+  --color-danger-foreground: var(--danger-foreground);
+  --color-danger-subtle: var(--danger-subtle);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  --color-info-subtle: var(--info-subtle);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --font-sans: var(--font-cairo);
+  --radius-sm: calc(var(--radius) - 0.25rem);
+  --radius-md: calc(var(--radius) - 0.125rem);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 0.25rem);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+  border-color: var(--border);
+}
+
+html {
+  background: var(--background);
+  text-rendering: optimizeLegibility;
 }
 
 body {
+  min-height: 100svh;
+  margin: 0;
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-cairo), sans-serif;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.5;
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:disabled {
+  pointer-events: none;
+}
+
+dialog {
+  color: inherit;
+}
+
+dialog[open] > div {
+  animation: drawer-enter 180ms ease-out both;
+}
+
+dialog::backdrop {
+  animation: backdrop-enter 160ms ease-out both;
+}
+
+@keyframes drawer-enter {
+  from {
+    transform: translateX(1.25rem);
+    opacity: 0.7;
+  }
+}
+
+@keyframes backdrop-enter {
+  from {
+    opacity: 0;
+  }
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--primary) 18%, transparent);
+  color: var(--foreground);
+}
+
+:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--ring) 72%, white);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
