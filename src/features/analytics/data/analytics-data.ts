@@ -38,9 +38,14 @@ export function getAnalyticsData(range: DashboardRange): AnalyticsData {
     distributionSubtitle: isCancelled ? "خلال آخر 7 أيام" : "آخر 30 يوم",
     sourcesTitle: isCancelled ? "مصادر الإلغاء" : "مصادر الطلبات",
     sourcesSubtitle: isCancelled ? "خلال آخر 7 أيام" : "آخر 6 أسابيع",
-    sourceSeries: isCancelled
-      ? { app: "النظام", web: "السواق", calls: "العميل", appColor: "#2563EB", webColor: "#F59E0B", callsColor: "#DC2626" }
-      : { app: "التطبيق", web: "الموقع", calls: "مركز الاتصال", appColor: "#2563EB", webColor: "#F59E0B", callsColor: "#DC2626" },
+    sourceSeries: {
+      app: isCancelled ? "النظام" : "التطبيق",
+      web: isCancelled ? "السواق" : "الموقع",
+      calls: isCancelled ? "العميل" : "مركز الاتصال",
+      appColor: "#2563EB",
+      webColor: "#F59E0B",
+      callsColor: "#DC2626"
+    },
     citiesTitle: isCancelled ? "الإلغاءات حسب المدينة" : "أعلى المدن أداءً",
     citiesSubtitle: isCancelled ? "خلال آخر 7 أيام" : "عدد الرحلات المنفذة",
     peakTitle: isCancelled ? "ساعات ذروة الإلغاء" : "ساعات الذروة",
