@@ -5,6 +5,5 @@ export const siteConfig = {
   user: {
     name: "عبدالله محمد",
     role: "مدير النظام",
-    initials: "عم",
   },
 } as const;

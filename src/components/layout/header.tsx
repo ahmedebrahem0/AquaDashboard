@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Bell } from "lucide-react";
 
 import { MobileNavigation } from "@/components/layout/mobile-navigation";
@@ -17,12 +18,13 @@ export function Header() {
               {siteConfig.user.role}
             </p>
           </div>
-          <div
-            aria-hidden="true"
-            className="grid size-10 shrink-0 place-items-center rounded-full bg-primary text-xs font-bold text-primary-foreground ring-2 ring-primary/10 ring-offset-2"
-          >
-            {siteConfig.user.initials}
-          </div>
+          <Image
+            src="/images/profile/man-image.png"
+            alt={`صورة ${siteConfig.user.name}`}
+            width={32}
+            height={32}
+            className="size-10 shrink-0 rounded-full object-cover ring-2 ring-primary/10 ring-offset-2"
+          />
         </div>
 
         <button

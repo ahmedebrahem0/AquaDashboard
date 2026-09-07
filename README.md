@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# KOWA Logistics Dashboard
+
+Arabic-first logistics dashboard built as a front-end implementation of a Figma design. The project focuses on accurate RTL behavior, responsive layouts, accessible interactions, maintainable feature boundaries, and a small client-side footprint.
+
+## Highlights
+
+- Arabic document language and right-to-left layout from the root.
+- Responsive application shell with a desktop sidebar and accessible mobile drawer.
+- Eleven working navigation routes with clear active states.
+- Honest coming-soon pages for sections that are not implemented yet.
+- URL-backed dashboard date filters for shareable and persistent state.
+- Typed, deterministic mock KPI data with pure selectors.
+- Lightweight SVG sparklines instead of loading a chart library for small trends.
+- Semantic design tokens based on the Figma palette.
+- Keyboard navigation, visible focus states, reduced-motion support, and accessible status text.
+- Optimized local assets organized by responsibility.
+
+## Technology
+
+- Next.js 16 App Router
+- React 19
+- TypeScript in strict mode
+- Tailwind CSS 4
+- Recharts for the upcoming analytics charts
+- Lucide React for interface icons
+- shadcn configuration with Base UI primitives
+
+## Project Structure
+
+```text
+src/
+├── app/
+│   └── (dashboard)/          # Dashboard routes, shared layout and loading state
+├── components/
+│   └── layout/               # App shell, header, sidebar and mobile navigation
+├── config/                   # Site and navigation configuration
+├── features/
+│   └── dashboard/            # KPI components, mock data, selectors and types
+└── lib/                      # Shared utilities
+
+public/
+├── icons/
+│   └── navigation/           # Sidebar icons exported from Figma
+└── images/
+    ├── brand/                # KOWA brand assets
+    ├── map/                  # Delivery map artwork
+    └── states/               # Loading artwork
+```
+
+The route layer handles composition and metadata. Reusable layout components remain domain-independent, while dashboard-specific data and presentation live together under `src/features/dashboard`. Interactive behavior is kept inside small Client Components; pages and layouts remain Server Components by default.
+
+## Routes
+
+The dashboard is available at `/`. The remaining sidebar destinations use real routes and currently display a clear coming-soon state:
+
+`/trips`, `/drivers`, `/users`, `/acceptance-requests`, `/wallet`, `/monthly-salary`, `/reports`, `/support`, `/notifications`, and `/settings`.
+
+Unknown section paths return the application 404 response.
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000). The root URL opens the main dashboard directly.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Quality Checks
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
 
-## Learn More
+The interface has been checked at 320, 375, 768, 1024, 1440, and 1920 pixel widths. Navigation, mobile drawer behavior, active-route styling, invalid filter fallback, and unknown-route handling were also verified.
 
-To learn more about Next.js, take a look at the following resources:
+## Design Decisions
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Brand colors are defined as semantic CSS variables rather than repeated literals.
+- Dashboard filter state is stored in the URL without introducing a global state library.
+- Mock data, derived calculations, types, and presentation are separated.
+- Exported Figma icons and brand imagery are served locally through Next.js.
+- Unfinished functionality is represented honestly instead of using non-functional controls.
+- The architecture is intentionally incremental: files and abstractions are added only when they have a real responsibility.
