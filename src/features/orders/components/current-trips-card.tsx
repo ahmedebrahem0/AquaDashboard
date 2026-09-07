@@ -14,7 +14,7 @@ export function CurrentTripsCard({ trips }: { trips: readonly CurrentTrip[] }) {
       <CardTitle
         id="trips-title"
         title="الرحلات الجارية الآن"
-        subtitle="تتحدث كل 10 ثواني"
+        subtitle="تحديث كل 10 ثواني"
       />
       <ul className="space-y-2.5 px-4 py-3">
         {trips.map((trip) => {
