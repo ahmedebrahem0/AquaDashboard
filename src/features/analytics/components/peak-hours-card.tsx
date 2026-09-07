@@ -32,12 +32,12 @@ export function PeakHoursCard({ title = "ساعات الذروة", subtitle = "7
             </div>
           ))}
         </div>
-        <div className="mt-3 flex items-center gap-1 text-[9px] text-muted-foreground">
-          <span>أقل</span>
+        <div className="mt-3 flex items-center gap-1 text-[9px] text-muted-foreground justify-end">
+          <span>أكثر</span>
           {colors.slice(1).map((color) => (
             <i key={color} className="size-2.5 rounded-[2px]" style={{ background: color }} />
           ))}
-          <span>أكثر</span>
+          <span>أقل</span>
         </div>
       </div>
     </section>
